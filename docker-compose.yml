@@ -7,3 +7,11 @@ services:
       - ./chroma-data:/chromadb
     container_name: chromadb
     restart: unless-stopped
+
+  embedding-python:
+    build:
+      context: ./embedding-python
+    ports:
+      - "5001:5001"
+    container_name: embedding-python
+    restart: unless-stopped

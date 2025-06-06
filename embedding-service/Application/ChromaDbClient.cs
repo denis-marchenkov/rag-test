@@ -1,8 +1,8 @@
 using Application.Interfaces;
 using embedding_service.Application.DTO;
 using embedding_service.Configuration;
+using embedding_service.DTO.ChromaRequest;
 using Microsoft.Extensions.Options;
-using System.Security.Cryptography;
 using System.Text.Json;
 
 namespace Application;
@@ -75,7 +75,7 @@ public class ChromaDbClient : IChromaDbClient
             return collection;
         }
 
-        var createReq = new { name = _settings.Collection, get_or_create = true };
+        var createReq = CreateCollectionRequest.Create(_settings.Collection);
 
         var createResp = await _httpClient.PostAsJsonAsync(_settings.Collection_POST(), createReq);
         createResp.EnsureSuccessStatusCode();
