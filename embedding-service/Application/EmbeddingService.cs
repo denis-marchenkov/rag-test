@@ -12,7 +12,7 @@ public class EmbeddingService : IEmbeddingService
     public EmbeddingService(IHttpClientFactory httpClientFactory)
     {
         _httpClient = httpClientFactory.CreateClient();
-        // You can move this to config if needed
+
         _pythonServiceUrl = Environment.GetEnvironmentVariable("PYTHON_EMBEDDING_URL") ?? "http://localhost:5001/embed";
     }
 

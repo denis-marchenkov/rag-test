@@ -1,4 +1,5 @@
 using Application.Interfaces;
+using embedding_service.Configuration;
 using UglyToad.PdfPig;
 
 namespace Application;
@@ -19,7 +20,7 @@ public class PdfReaderService : IPdfReaderService
             using var pdf = PdfDocument.Open(file);
             var text = string.Join("\n", pdf.GetPages().Select(p => p.Text));
             yield return text;
-            await Task.Yield(); // Ensure method is truly async
+            await Task.Yield();
         }
     }
 } 

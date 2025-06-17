@@ -30,3 +30,4 @@ chroma-data/
 
 embedding-python/.env
 embedding-python/.venv
+node_modules

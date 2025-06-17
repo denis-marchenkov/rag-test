@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer
 from typing import List
 import uvicorn
+import os
 
 app = FastAPI()
 model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
@@ -19,4 +20,6 @@ async def embed(req: EmbedRequest):
     return {"embeddings": vectors}
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=5001) 
+    host = os.getenv("EMBEDDING_SERVICE_HOST", "0.0.0.0")
+    port = int(os.getenv("EMBEDDING_SERVICE_PORT", 5001))
+    uvicorn.run(app, host=host, port=port) 

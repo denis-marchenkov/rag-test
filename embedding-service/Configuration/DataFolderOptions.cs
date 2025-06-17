@@ -1,4 +1,4 @@
-namespace Application;
+namespace embedding_service.Configuration;
 
 public class DataFolderOptions
 {

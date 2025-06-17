@@ -5,7 +5,7 @@ namespace embedding_service.DTO.ChromaRequest
     public class CreateCollectionRequest
     {
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         [JsonPropertyName("get_or_create")]
         public bool GetOrCreate { get; set; }

@@ -15,3 +15,30 @@ services:
       - "5001:5001"
     container_name: embedding-python
     restart: unless-stopped
+
+  embedding-service:
+    build:
+      context: ./embedding-service
+      dockerfile: Dockerfile
+    ports:
+      - "7001:7001"
+      - "5002:5000"
+    environment:
+      - PYTHON_EMBEDDING_URL=http://embedding-python:5001/embed
+    container_name: embedding-service
+    restart: unless-stopped
+
+  ui:
+    build:
+      context: ./ui
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./ui:/app
+      - /app/node_modules
+    container_name: react-ui
+    restart: unless-stopped
+    command: npm start
+    environment:
+      - REACT_APP_API_URL=http://localhost:7001

@@ -6,6 +6,7 @@
         public string Tenant { get; set; } = "test_tenant";
         public string Database { get; set; } = "test_database";
         public string Collection { get; set; } = "test_collection";
+        public string CollectionId { get; set; }
 
 
         public string Tenant_GET()
@@ -26,9 +27,10 @@
             return $"{BaseUrl}/tenants/{Tenant}/databases";
         }
 
-        public string Collection_GET()
+        public string Collection_GET(string collectionId = null)
         {
-            return $"{BaseUrl}/tenants/{Tenant}/databases/{Database}/collections/{Collection}";
+            collectionId ??= Collection;
+            return $"{BaseUrl}/tenants/{Tenant}/databases/{Database}/collections/{collectionId}";
         }
         public string Collection_POST()
         {
@@ -40,9 +42,9 @@
             return $"{BaseUrl}/tenants/{Tenant}/databases/{Database}/collections/{collectionId}/upsert";
         }
 
-        public string Collection_QUERY()
+        public string Collection_QUERY(string collectionId)
         {
-            return $"{Collection_GET()}/query";
+            return $"{Collection_GET(collectionId)}/query";
         }
     }
 }
